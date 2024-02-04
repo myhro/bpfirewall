@@ -1,6 +1,6 @@
 BINARY = firewall
 BPF_OBJ := firewall.bpf.o
-IFACE := eth0
+IFACE ?= eth0
 MAP_FILE := /sys/fs/bpf/ports
 PROG_FILE := /sys/fs/bpf/firewall
 

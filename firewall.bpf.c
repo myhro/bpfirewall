@@ -31,7 +31,6 @@ int firewall(struct xdp_md *ctx) {
         bpf_printk("Blocked port: %d", dest);
         return XDP_DROP;
     }
-    bpf_printk("Allowed port: %d", dest);
 
     return XDP_PASS;
 }

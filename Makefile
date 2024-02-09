@@ -1,4 +1,5 @@
-BINARY = firewall
+ARCH := $(shell uname -m | sed 's/x86_64/x86/' | sed 's/aarch64/arm64/')
+BINARY := firewall
 BPF_OBJ := firewall.bpf.o
 IFACE ?= eth0
 MAP_FILE := /sys/fs/bpf/ports
@@ -20,8 +21,8 @@ firewall:
 
 firewall.bpf.o:
 	clang -target bpf \
-		-D __TARGET_ARCH_x86 \
-		-I /usr/include/x86_64-linux-gnu/ \
+		-D __TARGET_ARCH_$(ARCH) \
+		-I /usr/include/$(shell uname -m)-linux-gnu/ \
 		-g -O2 -c firewall.bpf.c -o $(BPF_OBJ)
 	llvm-strip-14 -g $(BPF_OBJ)
 

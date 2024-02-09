@@ -19,7 +19,7 @@ detach:
 firewall:
 	gcc firewall.c -o $(BINARY) -lbpf
 
-firewall.bpf.o:
+firewall.bpf.o: vmlinux.h
 	clang -target bpf \
 		-D __TARGET_ARCH_$(ARCH) \
 		-I /usr/include/$(shell uname -m)-linux-gnu/ \

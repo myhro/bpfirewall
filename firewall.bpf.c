@@ -1,5 +1,7 @@
-#include "network.h"
+#include "vmlinux.h"
+#include <bpf/bpf_endian.h>
 #include <bpf/bpf_helpers.h>
+#include "network.h"
 
 struct {
     __uint(type, BPF_MAP_TYPE_HASH);
